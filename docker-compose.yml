@@ -1,0 +1,25 @@
+version: '3.0'
+
+services:
+  backend:
+    container_name: backend
+    build:
+      dockerfile: Dockerfile
+      context: .
+    ports:
+      - 5000:5000
+    depends_on:
+      - postgres
+    restart: always
+  postgres:
+    container_name: postgres
+    image: postgres:14-alpine
+    env_file:
+      - .production.env
+    environment:
+      PG_DATE: /var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data
+    restart: always
