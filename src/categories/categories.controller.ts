@@ -8,20 +8,20 @@ import {
   Param,
   ParseUUIDPipe,
   Post,
+  Query,
   UseGuards,
 } from '@nestjs/common';
 import { CategoriesService } from './categories.service';
 import { CreateCategoryDto } from './dto/create-category.dto';
+import { ProductCatalogTypes } from './entities/category.entity';
 
 @Controller('categories')
 export class CategoriesController {
   constructor(private readonly categoriesService: CategoriesService) {}
 
-  @Roles('ADMIN')
-  @UseGuards(RolesGuard)
   @Get()
-  getAll() {
-    return this.categoriesService.getAll();
+  getAll(@Query('catalogFilter') catalogFilter: ProductCatalogTypes) {
+    return this.categoriesService.getAll(catalogFilter);
   }
 
   @Roles('ADMIN')

@@ -1,7 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { CreateCategoryDto } from './dto/create-category.dto';
 import { InjectRepository } from '@nestjs/typeorm';
-import { CategoryEntity } from './entities/category.entity';
+import {
+  CategoryEntity,
+  ProductCatalogTypes,
+} from './entities/category.entity';
 import { Repository } from 'typeorm';
 
 @Injectable()
@@ -19,7 +22,12 @@ export class CategoriesService {
     return this.categoriesRepository.delete(id);
   }
 
-  async getAll() {
+  async getAll(catalogFilter?: ProductCatalogTypes) {
+    if (catalogFilter) {
+      return this.categoriesRepository.find({
+        where: { catalog: catalogFilter },
+      });
+    }
     return this.categoriesRepository.find();
   }
 }

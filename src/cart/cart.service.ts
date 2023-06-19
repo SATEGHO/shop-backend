@@ -22,8 +22,6 @@ export class CartService {
   }
 
   async createCartItem(userId: string, createCartItemDto: CreateCartItemDto) {
-    console.log(userId, createCartItemDto);
-
     const cart = await this.cartRepository.findOneBy({ userId });
 
     if (!cart) {

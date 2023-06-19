@@ -1,3 +1,5 @@
+import { FilesModule } from './../files/files.module';
+import { OrderItemEntity } from './../orders/entities/order-item.entity';
 import { CartItemEntity } from './../cart/entities/cart-item.entity';
 import { CartEntity } from './../cart/entities/cart.entity';
 import { ManufacturerEntity } from './../manufacturers/entities/manufacturer.entity';
@@ -18,7 +20,9 @@ import { ProductPropertyEntity } from './entities/product-property.entity';
       ManufacturerEntity,
       CartEntity,
       CartItemEntity,
+      OrderItemEntity,
     ]),
+    FilesModule,
   ],
   controllers: [ProductsController],
   providers: [ProductsService],

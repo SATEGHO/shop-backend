@@ -30,7 +30,7 @@ export class OrderItemEntity {
   @JoinColumn({ name: 'orderId' })
   order: OrderEntity;
 
-  @OneToOne(() => ProductEntity)
+  @ManyToOne(() => ProductEntity)
   @JoinColumn({ name: 'productId' })
   product: ProductEntity;
 }

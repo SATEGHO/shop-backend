@@ -10,6 +10,8 @@ import { ManufacturersModule } from './manufacturers/manufacturers.module';
 import { OrdersModule } from './orders/orders.module';
 import * as dotenv from 'dotenv';
 import * as path from 'path';
+import { FilesModule } from './files/files.module';
+
 dotenv.config({
   path: path.join(__dirname, '..', `.${process.env.NODE_ENV}.env`),
 });
@@ -34,6 +36,7 @@ dotenv.config({
     CategoriesModule,
     ManufacturersModule,
     OrdersModule,
+    FilesModule,
   ],
 })
 export class AppModule {}

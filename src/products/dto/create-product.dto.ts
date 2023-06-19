@@ -1,16 +1,22 @@
-import { IsNotEmpty, IsNumber, IsOptional, IsUUID, Min } from 'class-validator';
+import {
+  IsEnum,
+  IsNotEmpty,
+  IsNumber,
+  IsOptional,
+  IsUUID,
+  Min,
+} from 'class-validator';
 import { CreateProductPropertyDto } from './create-product-property.dto';
+import { Type } from 'class-transformer';
 
 export class CreateProductDto {
   @IsNotEmpty({ message: 'Название не может быть пустым' })
   name: string;
 
   @IsNumber({}, { message: 'Некорректное значение' })
+  @Type(() => Number)
   @Min(1, { message: 'Минимальное значение цены: 1' })
   price: number;
-
-  @IsNotEmpty({ message: 'Укажите изображение' })
-  image: string;
 
   @IsOptional()
   description: string;
@@ -18,6 +24,7 @@ export class CreateProductDto {
   productProperties?: CreateProductPropertyDto[];
 
   @IsNumber({}, { message: 'Некорректное значение' })
+  @Type(() => Number)
   @Min(1, { message: 'Минимальное значение количества: 1' })
   @IsOptional()
   quantity: number;

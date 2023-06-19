@@ -9,20 +9,20 @@ import {
   Param,
   ParseUUIDPipe,
   Post,
+  Query,
   UseGuards,
 } from '@nestjs/common';
 import { ManufacturersService } from './manufacturers.service';
 import { CreateManufacturerDto } from './dto/create-manufacturer.dto';
+import { ProductCatalogTypes } from './entities/manufacturer.entity';
 
 @Controller('manufacturers')
 export class ManufacturersController {
   constructor(private readonly manufacturersService: ManufacturersService) {}
 
-  @Roles('ADMIN')
-  @UseGuards(RolesGuard)
   @Get()
-  getAll() {
-    return this.manufacturersService.getAll();
+  getAll(@Query('catalogFilter') catalogFilter: ProductCatalogTypes) {
+    return this.manufacturersService.getAll(catalogFilter);
   }
 
   @Roles('ADMIN')

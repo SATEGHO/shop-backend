@@ -12,6 +12,11 @@ import {
 } from 'typeorm';
 import { ProductPropertyEntity } from './product-property.entity';
 
+export enum ProductCatalogTypes {
+  APPLIANCES = 'appliances',
+  BUILDING_MATERIALS = 'building_materials',
+}
+
 @Entity('products')
 export class ProductEntity {
   @PrimaryGeneratedColumn('uuid')
@@ -19,6 +24,9 @@ export class ProductEntity {
 
   @Column({ unique: true })
   name: string;
+
+  @Column({ default: ProductCatalogTypes.APPLIANCES })
+  catalog: ProductCatalogTypes;
 
   @Column()
   price: number;
