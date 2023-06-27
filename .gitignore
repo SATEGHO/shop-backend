@@ -11,6 +11,7 @@ node_modules
 dist
 dist-ssr
 pgdata
+uploads
 *.local
 
 # Editor directories and files
